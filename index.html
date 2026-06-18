@@ -1,0 +1,220 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>University School Lacrosse — Player Development Hub</title>
+<style>
+  :root{
+    --maroon:#821432; --maroon-d:#5b0e22; --ink:#211f21; --mut:#4a474a;
+    --pale:#F0DCE1; --bg:#f4f1f2; --card:#fff; --line:#e7e0e2; --ch:#343234; --gold:#b08d57;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    line-height:1.55;-webkit-font-smoothing:antialiased}
+  h1,h2,h3,h4,.serif{font-family:Georgia,"Times New Roman",serif}
+  a{color:var(--maroon);text-decoration:none}
+  .wrap{max-width:1140px;margin:0 auto;padding:0 22px}
+
+  /* Hero */
+  header{position:relative;background:radial-gradient(1200px 400px at 80% -10%,#9a1c3e 0%,var(--maroon) 45%,var(--maroon-d) 100%);
+    color:#fff;padding:46px 0 38px;border-bottom:5px solid #161616;overflow:hidden}
+  header::after{content:"";position:absolute;right:-60px;top:-60px;width:340px;height:340px;
+    border:2px solid rgba(255,255,255,.10);border-radius:30px;transform:rotate(18deg)}
+  .eyebrow{letter-spacing:.26em;font-size:12px;font-weight:800;color:var(--pale);text-transform:uppercase;margin:0 0 10px}
+  header h1{margin:0 0 6px;font-size:40px;line-height:1.05;letter-spacing:.2px}
+  header .sub{font-size:19px;color:#fbe9ee;font-style:italic;margin:0 0 14px}
+  .credit{font-size:13.5px;color:#f0d8df;margin:0 0 22px}
+  .phases{display:flex;flex-wrap:wrap;gap:8px;position:relative;z-index:1}
+  .phase{flex:1 1 150px;background:rgba(0,0,0,.16);border:1px solid rgba(255,255,255,.20);border-radius:11px;padding:10px 13px}
+  .phase b{display:block;font-size:13.5px}
+  .phase span{font-size:11.5px;color:#f0d4db}
+
+  /* Sticky nav + filter */
+  .bar{position:sticky;top:0;z-index:20;background:rgba(244,241,242,.97);backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);padding:11px 0}
+  .bar .wrap{display:flex;flex-wrap:wrap;gap:14px 18px;align-items:center}
+  .nav{display:flex;flex-wrap:wrap;gap:6px}
+  .nav a{font-size:13px;font-weight:700;color:var(--mut);padding:5px 11px;border-radius:8px}
+  .nav a:hover{background:var(--pale);color:var(--maroon)}
+  .filter{display:flex;flex-wrap:wrap;gap:7px;align-items:center;margin-left:auto}
+  .filter .lbl{font-size:12.5px;font-weight:700;color:var(--mut)}
+  .chip{border:1.5px solid var(--maroon);background:#fff;color:var(--maroon);border-radius:999px;
+    padding:5px 13px;font-size:12.5px;font-weight:800;cursor:pointer;transition:.15s}
+  .chip:hover{background:var(--pale)}
+  .chip.active{background:var(--maroon);color:#fff}
+
+  main{padding:30px 0 12px}
+  .secrow{display:flex;align-items:baseline;gap:12px;margin:34px 0 15px}
+  .secrow h2{font-size:23px;color:var(--maroon);margin:0;border-left:5px solid var(--maroon);padding-left:12px}
+  .secrow p{font-size:13px;color:var(--mut);margin:0}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:15px}
+
+  .card{background:var(--card);border:1px solid var(--line);border-radius:13px;padding:17px 18px;
+    display:flex;flex-direction:column;box-shadow:0 1px 3px rgba(0,0,0,.05);transition:.16s}
+  .card:hover{transform:translateY(-3px);box-shadow:0 10px 24px rgba(130,20,50,.13);border-color:#e3c9d1}
+  .card h3{margin:0 0 7px;font-size:17px;color:var(--ink)}
+  .card p{margin:0 0 13px;font-size:13.5px;color:var(--mut);flex:1}
+  .open{font-size:13.5px;font-weight:800;color:var(--maroon)}
+  .open::after{content:" \2192"}
+  .tags{display:flex;gap:5px;flex-wrap:wrap;margin-top:11px}
+  .tag{font-size:10.5px;font-weight:800;letter-spacing:.03em;color:var(--maroon);background:var(--pale);border-radius:6px;padding:3px 8px}
+  .tag.coach{color:#fff;background:var(--ch)}
+  .soon{opacity:.62;border-style:dashed}
+  .soon .open{color:var(--mut)}.soon .open::after{content:""}
+
+  /* Featured */
+  .featured .card{border-top:4px solid var(--maroon);background:linear-gradient(180deg,#fff,#fdf7f9)}
+  .featured .kick{font-size:10.5px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin:0 0 6px}
+
+  .note{background:#fff;border:1px solid var(--line);border-left:4px solid var(--maroon);border-radius:12px;
+    padding:16px 18px;font-size:14px;margin:34px 0 8px}
+  .note b{color:var(--maroon)}
+  footer{background:var(--ch);color:#dcd7da;padding:28px 0 34px;margin-top:26px;font-size:13.5px}
+  footer .wrap{display:flex;flex-wrap:wrap;gap:8px;justify-content:space-between;align-items:center}
+  footer b{color:#fff}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <p class="eyebrow">University School Lacrosse · Player Development</p>
+    <h1>The Off-Season Playbook</h1>
+    <p class="sub">Compete like champions — with joy, curiosity, and compassion.</p>
+    <p class="credit">Coach Mike Perrino, Head Coach &amp; Director of Lacrosse&nbsp;&nbsp;·&nbsp;&nbsp;University School Lacrosse Player Development</p>
+    <div class="phases">
+      <div class="phase"><b>A · Compete &amp; Play</b><span>Summer — joy &amp; club ball</span></div>
+      <div class="phase"><b>B · Sharpen</b><span>Late summer — identity &amp; reset</span></div>
+      <div class="phase"><b>C · Build</b><span>Fall — consistency &amp; box</span></div>
+      <div class="phase"><b>D · Forge</b><span>Winter — discipline &amp; box</span></div>
+      <div class="phase"><b>E · Ramp</b><span>Preseason — arrive ready</span></div>
+    </div>
+  </div>
+</header>
+
+<div class="bar">
+  <div class="wrap">
+    <nav class="nav">
+      <a href="#start">Start Here</a>
+      <a href="#play">Play &amp; Compete</a>
+      <a href="#train">Train</a>
+      <a href="#mind">Mindset &amp; Culture</a>
+      <a href="#recruit">Get Recruited</a>
+      <a href="#academics">Academics</a>
+      <a href="#ahead">2027</a>
+      <a href="#partners">Partners</a>
+    </nav>
+    <div class="filter">
+      <span class="lbl">For:</span>
+      <button class="chip active" data-g="all">Everyone</button>
+      <button class="chip" data-g="9">Rising 9</button>
+      <button class="chip" data-g="10">Rising 10</button>
+      <button class="chip" data-g="11">Rising 11</button>
+      <button class="chip" data-g="12">Rising 12</button>
+    </div>
+  </div>
+</div>
+
+<main class="wrap" id="main"></main>
+
+<div class="wrap">
+  <div class="note"><b>One boundary, so it's clear:</b> this hub covers player development and the recruiting/academic <i>process</i>. It is <b>not</b> college counseling or placement — your school list, applications, and final decisions belong with the <b>US College Counseling Office</b>. Questions on the lacrosse side? Talk to Coach Perrino or the Player Development staff.</div>
+</div>
+
+<footer>
+  <div class="wrap">
+    <span><b>University School Lacrosse</b> — Compete like champions, on the field and beyond it.</span>
+    <span>Don't talk about it — be about it.</span>
+  </div>
+</footer>
+
+<script>
+const D = id => "https://docs.google.com/document/d/" + id + "/edit";
+const P = id => "https://docs.google.com/presentation/d/" + id + "/edit";
+
+const sections = [
+  { id:"start", title:"Start Here", note:"New here? Begin with these three.", featured:true, always:true, items:[
+    {k:"The front door", t:"Player Development Charter", d:"What we cover, what we don't, and how to use this whole library a little at a time.", g:["9","10","11","12"], u:D("1xjcfeyDjCCrhq525SDar7eYbv0kkT7b6BbuWvOSKnvQ")},
+    {k:"Watch the overview", t:"Family-Night Deck (Zoom)", d:"The full off-season plan Coach Perrino walks families through — body, mind, and recruiting.", g:["9","10","11","12"], u:P("195OvW5UdDoNRkwOu-8HwbpVwlJHIF_lnLvr7YcQdT-g")},
+    {k:"What's coming", t:"What's Ahead — 2027", d:"Spring schedule, our new MSLA membership, the optional Florida trip & the summer team event.", g:["9","10","11","12"], u:D("1fbSTm_hJxlwmWRIFLPsTppCs3F6-U7bxn3v61grSNAw")},
+  ]},
+  { id:"play", title:"Play & Compete", note:"Get reps the right way", items:[
+    {t:"Cleveland Club Guide", d:"Where to play and try out — Cleveland-area clubs and tryout windows (boys).", g:["9","10","11","12"], u:D("1nn21Glf4VnPIdgw6uwPfXQQ9JXvyvb7Kvw6XrnBiomA")},
+    {t:"Backyard Compete (CLA)", d:"The summer crash course plus the full Offense-vs-Defense playbook.", g:["9","10","11","12"], u:D("1emVbRMcVBGc5oyDD6fwRGtl22oDwmMQUaYLDvflR1lM")},
+    {t:"WHY Box Lacrosse", d:"The family case for fall & winter box — and the skills it builds.", g:["9","10","11","12"], u:D("1FaKJPdd_OE7_8xWG0cmj5VxuWIXW1rUUuk7FkDI1N4s")},
+    {t:"JM3 Athlete Program", d:"The optional deeper-dive CLA opportunity with Jamie Munro.", g:["9","10","11","12"], u:D("1h1hgz-xhbfBe1CnLZQVttCgJyLqbsW0wYiijPRmLIO4")},
+  ]},
+  { id:"train", title:"Train the Body", note:"Get faster, get stronger, recover", items:[
+    {t:"COMPETE Off-Season Program", d:"The phased plan from summer to first practice — body and mind.", g:["9","10","11","12"], u:D("1y8tJN1vMos7m80IcpWkNiQgmmjTSQXiJ2EQSg3ndQCc")},
+    {t:"Feed the Cats — Speed", d:"Get faster in 16 minutes: the Atomic Workout, 2–3x a week, fresh.", g:["9","10","11","12"], u:D("1Cm2-hxTApqgj7Cgz33UmsbYmwvYMzcYCHLSU7sNee4I")},
+  ]},
+  { id:"mind", title:"Mindset, Culture & Well-Being", note:"Train the mind; play for the right reasons", items:[
+    {t:"Better Together — Mentorship", d:"Athletes Better Together: real mentors and mental-health support.", g:["9","10","11","12"], u:D("1sbSClKl0Uw2n_f2haB0ZTMn-DO_bfJiiVRW39do1-bs")},
+    {t:"Understanding the Team", d:"Roles, playing time, the 24-hour rule, and perspective for families.", g:["9","10","11","12"], u:D("1Id3Cs73PysHwz-eHAp1y4CVK5sms9oKQkNHLBjrw4xQ")},
+    {t:"Why We Play", d:"Honoring every reason — and discovering, together, how good we can be.", g:["9","10","11","12"], u:D("1FlH7-BuP9qUbgYeVxRYXdik-1QuG9pxzEaqqGVeQCyU")},
+    {t:"Play More Than One Sport", d:"Both cases for multiple sports — the development edge and your son's health & happiness.", g:["9","10","11","12"], u:D("1sxH-ZKWOUWiJ1DDtBk2F2CiteT3KGsOCiE_0CBUotvU")},
+  ]},
+  { id:"recruit", title:"Get Recruited", note:"The how, not placement", items:[
+    {t:"The Recruiting Journey", d:"The path, the timeline, and the evolving landscape — by grade.", g:["9","10","11","12"], u:D("1QOpJnhkm3SI8YVKjCcO0njzR9aMr69O3NTbMilnzL1s")},
+    {t:"Recruiting Emails & Film", d:"Reach coaches the right way, sound like you, and build highlight film.", g:["11","12"], u:D("1E4D86rjiZOJ4uIfsohg7D2MNanXsO7I_S3Rd0f_TSEs")},
+  ]},
+  { id:"academics", title:"Academics & Beyond", note:"Your strongest recruiting asset", items:[
+    {t:"SAT & ACT Game Plan", d:"What to do each year — digital tests, the test-optional turn, and smart prep.", g:["10","11","12"], u:D("16XKx-DwHlUABr1Cm0CbBg9flPnEbqprBy4UMRxcrPEE")},
+    {t:"The College Essay", d:"Coming soon — a guide to writing a standout college essay.", g:["11","12"], soon:true},
+    {t:"Course Selection & Curriculum", d:"Coming soon — building a college-ready, athlete-friendly transcript.", g:["9","10","11","12"], soon:true},
+  ]},
+  { id:"ahead", title:"Spring & Summer 2027", note:"The level we're playing — and how to plan", always:true, items:[
+    {t:"What's Ahead — Spring & Summer 2027", d:"Spring schedule, MSLA membership, the Florida trip & NHSLS — in one place.", g:["9","10","11","12"], u:D("1fbSTm_hJxlwmWRIFLPsTppCs3F6-U7bxn3v61grSNAw")},
+    {t:"MSLA — Midwest Lacrosse", d:"We're now an official member — a tougher, elite schedule. (apr 30–may 1 tournament)", g:["9","10","11","12"], u:"https://www.midwestlacrosse.org/", ext:true},
+    {t:"Hogan Lacrosse — Florida Trip", d:"The optional spring-break training trip (Mar 20–24) — sun, top programs, HOF coaches.", g:["9","10","11","12"], u:"https://www.hoganlax.com/page/team-training", ext:true},
+    {t:"NHSLS — Summer Team Event", d:"Compete as a US team in Baltimore, with college coaches in attendance.", g:["9","10","11","12"], u:"https://nhsls.com/", ext:true},
+  ]},
+  { id:"partners", title:"Partners & Free Resources", note:"Trusted people and tools", always:true, items:[
+    {t:"Athletes Better Together", d:"Mentorship and mental-health support for student-athletes and families.", g:["9","10","11","12"], u:"https://www.athletesbettertogether.com/", ext:true},
+    {t:"JM3 Sports", d:"Jamie Munro's Constraints-Led Approach training and recruiting road map.", g:["9","10","11","12"], u:"https://www.jm3sports.com/", ext:true},
+    {t:"Greater Cleveland Lacrosse", d:"Register for fall & winter box (the US 'Fighting Trout').", g:["9","10","11","12"], u:"https://greaterclevelandlacrosse.com/", ext:true},
+    {t:"Free Digital SAT Prep", d:"Official practice via Khan Academy and the College Board Bluebook app.", g:["10","11","12"], u:"https://www.khanacademy.org/digital-sat", ext:true},
+    {t:"CLA Podcast Notes", d:"Munro on First Class Lacrosse — why you can't learn lacrosse IQ on air.", g:["9","10","11","12"], u:D("1pIbGyvVUdvE2dVGYCbMn-vvY9Hk49EDfvIFDaZ34DVc")},
+  ]},
+];
+
+const main = document.getElementById("main");
+function esc(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
+function render(grade){
+  main.innerHTML = "";
+  sections.forEach(sec=>{
+    const vis = sec.items.filter(it=> sec.always || grade==="all" || it.g.includes(grade));
+    if(!vis.length) return;
+    const wrap = document.createElement("section");
+    wrap.id = sec.id;
+    wrap.innerHTML = `<div class="secrow"><h2>${esc(sec.title)}</h2><p>${esc(sec.note)}</p></div>`;
+    const grid = document.createElement("div");
+    grid.className = "grid" + (sec.featured ? " featured" : "");
+    vis.forEach(it=>{
+      const card = document.createElement("div");
+      card.className = "card" + (it.soon ? " soon":"");
+      const kick = (sec.featured && it.k) ? `<p class="kick">${esc(it.k)}</p>` : "";
+      const link = it.soon ? `<span class="open">In progress</span>`
+        : `<a class="open" href="${it.u}" target="_blank" rel="noopener">${it.ext?"Visit site":"Open"}</a>`;
+      const tags = it.g.length===4 ? `<span class="tag">All grades</span>`
+        : it.g.map(x=>`<span class="tag">Rising ${x}</span>`).join("");
+      card.innerHTML = `${kick}<h3>${esc(it.t)}</h3><p>${esc(it.d)}</p>${link}<div class="tags">${tags}</div>`;
+      grid.appendChild(card);
+    });
+    wrap.appendChild(grid);
+    main.appendChild(wrap);
+  });
+}
+render("all");
+document.querySelectorAll(".chip").forEach(c=>{
+  c.addEventListener("click",()=>{
+    document.querySelectorAll(".chip").forEach(x=>x.classList.remove("active"));
+    c.classList.add("active");
+    render(c.dataset.g);
+  });
+});
+</script>
+</body>
+</html>
